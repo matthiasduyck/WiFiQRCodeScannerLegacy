@@ -1,0 +1,24 @@
+WiFi QR Code Scanner allows you to scan a WiFi QR Code using your webcam and instantly connect to that network. Simply hold a WiFi QR Code up to your webcam and click connect when scanned. Once scanned, the network will be saved for later re-connection.
+
+These QR codes are often provided by your ISP or in public settings that offer WiFi. Android and iPhone devices have this scanning and connecting feature built-in. You can also generate such a QR code yourself, with freely available online tools, simply look for 'Generate WiFi QR code'. Combined with this tool, you can easily share your WiFi connection with others and/or change your password frequently without the hassle of typing over the password.
+
+Usage notes:
+For the connection to work, you need to be close enough that your device can see the network to connect to.
+If scanning from another display (such as a smartphone), you may need to adjust the brightness down for the code to be recognized.
+
+IMPORTANT NOTICE:
+This app is still in an early development stage and may contain bugs. Testing only occurred on x86 devices with a single webcam/camera and single WiFi card.
+
+
+
+
+notes to tester:
+The app absolutely requires the use of a webcam and will not show any activity if the camera is not allowed permission to be accessed, is not available or is taped of. In this case the app will remain blank an not show any UI elements or warnings. Considering the use case of the app, this should not be a problem to end-users. UI-interaction only occurs after a QR code has been scanned. Besides this, the app expects the device to only have a single webcam and a single wireless card at this time. The app is purposely designed to be as minimalist and simple as possible.
+
+To test the functionality of the app you will need to have a WiFi QR code. A normal QR code will not work. You can generate such code here: https://qifi.org/ or using any other WiFi QR code generation software or by a code provided by your ISP. See also: https://en.wikipedia.org/wiki/QR_code#WiFi_network_login
+
+Scanning the QR code will work regardless of your proximity to the network, but connecting will only work when Windows has already detected the network to be in range.
+
+I have only tested the app to work correctly on regular laptops that only have a single wifi card and single webcam. From my testing by sideloading the app, it functions correctly and as expected.
+
+If more information is needed you can contact me at matthiasduyck@gmail.com
