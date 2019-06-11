@@ -10,24 +10,29 @@ using System.Windows.Media.Imaging;
 
 namespace Wifi_QR_Code_Scanner_Legacy.ImageUtils
 {
-    public static class ImageUtils
+    public class ImageUtils
     {
-        public static BitmapImage ToBitmapImage(this Bitmap bitmap)
+        private BitmapImage bitmapImage;
+        private MemoryStream memoryStream;
+        public ImageUtils()
         {
-            using (var memory = new MemoryStream())
-            {
-                bitmap.Save(memory, ImageFormat.Png);
-                memory.Position = 0;
+            this.bitmapImage = new BitmapImage();
+            this.memoryStream = new MemoryStream();
+        }
+        public BitmapImage ToBitmapImage(Bitmap bitmap)
+        {
+            memoryStream = new MemoryStream();
+            bitmap.Save(memoryStream, ImageFormat.Jpeg);
+            memoryStream.Position = 0;
 
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = memory;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.EndInit();
-                bitmapImage.Freeze();
+            bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = memoryStream;
+            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            bitmapImage.EndInit();
+            bitmapImage.Freeze();
 
-                return bitmapImage;
-            }
+            return bitmapImage;
         }
     }
 }
