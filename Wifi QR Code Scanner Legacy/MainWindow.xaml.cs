@@ -109,18 +109,29 @@ namespace Wifi_QR_Code_Scanner_Legacy
                                 {
                                     scanningLocked = true;
                                     var wifiAPdata = WifiStringParser.parseWifiString(decoded);
-
-                                    DialogResult dr = System.Windows.Forms.MessageBox.Show(wifiAPdata.ToString(),
-                                    "Connect to this network?", MessageBoxButtons.YesNo);
-                                    switch (dr)
+                                    if (wifiAPdata != null)
                                     {
-                                        case System.Windows.Forms.DialogResult.Yes:
-                                            wifiConnectionManager.Connect(wifiAPdata);
-                                            break;
-                                        case System.Windows.Forms.DialogResult.No:
-                                            break;
+                                        DialogResult dr = System.Windows.Forms.MessageBox.Show(wifiAPdata.ToString(),
+                                        "Connect to this network?", MessageBoxButtons.YesNo);
+                                        switch (dr)
+                                        {
+                                            case System.Windows.Forms.DialogResult.Yes:
+                                                wifiConnectionManager.Connect(wifiAPdata);
+                                                break;
+                                            case System.Windows.Forms.DialogResult.No:
+                                                break;
+                                        }
                                     }
-
+                                    else
+                                    {
+                                        DialogResult dr = System.Windows.Forms.MessageBox.Show("No wifi data found, is this a WiFi QR code?",
+                                        "No wifi data found", MessageBoxButtons.OK);
+                                        switch (dr)
+                                        {
+                                            case System.Windows.Forms.DialogResult.OK:
+                                                break;
+                                        }
+                                    }
                                 }
                                 scanningLocked = false;
                             }
@@ -137,8 +148,39 @@ namespace Wifi_QR_Code_Scanner_Legacy
         private void Button1_Click_1(object sender, RoutedEventArgs e)
         {
             FinalFrame = new VideoCaptureDevice(CaptureDevice[comboBox1.SelectedIndex].MonikerString);
+            List<VideoCapabilities> availableCapabilities = null;
+            try
+            {
+                availableCapabilities = FinalFrame.VideoCapabilities.Where(capabilities => capabilities is VideoCapabilities).Select(capabilities => (VideoCapabilities)capabilities).ToList();
+                VideoCapabilities bestVideoResolution = this.findBestResolution(availableCapabilities);
+                if (bestVideoResolution != null)
+                {
+                    FinalFrame.VideoResolution = bestVideoResolution;
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageManager.ShowMessageToUserAsync("No resolutions could be detected, trying default mode.");
+            }
+            
             FinalFrame.NewFrame += new NewFrameEventHandler(FinalFrame_NewFrame);
             FinalFrame.Start();
+        }
+
+        private VideoCapabilities findBestResolution(List<VideoCapabilities> videoEncodingProperties)
+        {
+            if (videoEncodingProperties != null && videoEncodingProperties.Any())
+            {
+                //we want the highest bitrate, highest fps, with a resolution that is as square as possible, and not too small or too large
+                var result = videoEncodingProperties.Where(a => (a.FrameSize.Width >= a.FrameSize.Height))//square or wider
+                    .Where(b => b.FrameSize.Width >= 400 && b.FrameSize.Height >= 400)//not too small
+                    .Where(c => c.FrameSize.Width <= 800 && c.FrameSize.Height <= 600)//not too large
+                    .OrderBy(d => ((double)d.FrameSize.Width) / ((double)d.FrameSize.Height))//order by smallest aspect ratio(most 'square' possible)
+                    .ThenBy(e => e.FrameSize.Width)//order by the smallest possible width
+                    .First();
+                return result;
+            }
+            return null;
         }
     }
 }
