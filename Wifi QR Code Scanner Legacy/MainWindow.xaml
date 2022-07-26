@@ -6,12 +6,14 @@
         xmlns:local="clr-namespace:Wifi_QR_Code_Scanner_Legacy"
         xmlns:p="clr-namespace:Wifi_QR_Code_Scanner_Legacy.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.ApplicationTitle}" Height="677.733" Width="960.324">
+        Title="{x:Static p:Resources.ApplicationTitle}" Height="677.733" Width="960.324"
+        WindowState="Maximized">
     <Grid Margin="0,0,2,-4">
-        <ComboBox HorizontalContentAlignment="Center" x:Name="comboBox1" HorizontalAlignment="Stretch" Margin="10,0,10,49" VerticalAlignment="Bottom" Height="23"/>
-        <Grid Margin="10,10,10,87" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Black"/>
-        <Image x:Name="pictureBox1" Margin="10,10,10,87" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-        <Button Click="Button1_Click_1" x:Name="button1" Content="{x:Static p:Resources.ScanButton}" HorizontalAlignment="Stretch" Height="25" Margin="10,0,10,18" VerticalAlignment="Bottom"/>
+        <ComboBox HorizontalContentAlignment="Center" x:Name="comboBox1" HorizontalAlignment="Stretch" Margin="10,0,10,71" VerticalAlignment="Bottom" Height="40" FontSize="20"/>
+        <Grid Margin="10,10,10,117" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Black"/>
+        <Image x:Name="pictureBox1" Margin="10,10,10,117" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        <Button Click="Button1_Click_1" x:Name="button1" Content="{x:Static p:Resources.ScanButton}" HorizontalAlignment="Stretch" Height="40" Margin="10,0,10,25
+                " VerticalAlignment="Bottom" FontSize="20"/>
         
     </Grid>
 </Window>
