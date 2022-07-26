@@ -118,45 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>WiFi QR Code Scanner</value>
+    <value>Lecteur de QRCode Wifi</value>
   </data>
   <data name="AuthenticationLabel" xml:space="preserve">
-    <value>Authentication</value>
+    <value>Authentification</value>
   </data>
   <data name="ConnectTitle" xml:space="preserve">
-    <value>Connect to this network ?</value>
+    <value>Voulez-vous vous connecter au réseau ?</value>
   </data>
   <data name="Device Integrated Camera" xml:space="preserve">
-    <value>Integrated Camera</value>
+    <value>Caméra intégrée</value>
   </data>
   <data name="Device USB FHD Webcam" xml:space="preserve">
-    <value>Front camera</value>
+    <value>Caméra frontale</value>
   </data>
   <data name="Device USB HD Webcam" xml:space="preserve">
-    <value>Front camera</value>
+    <value>Caméra frontale</value>
   </data>
   <data name="Device USB2.0 Camera" xml:space="preserve">
-    <value>Rear camera</value>
+    <value>Caméra arrière</value>
   </data>
   <data name="Device World Facing Right" xml:space="preserve">
-    <value>Rear camera</value>
+    <value>Caméra arrière</value>
   </data>
   <data name="ErrorMessageNoWifi" xml:space="preserve">
-    <value>No wifi data found, is this a WiFi QR code?</value>
+    <value>Aucune données Wifi trouvées dans le QR Code</value>
   </data>
   <data name="ErrorTitleNoWifi" xml:space="preserve">
-    <value>No wifi data found</value>
+    <value>Aucune données Wifi</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
-    <value>Password</value>
+    <value>Mot de passe</value>
   </data>
   <data name="ScanButton" xml:space="preserve">
-    <value>Start Scanning</value>
+    <value>Démarrer le scan du QR Code</value>
   </data>
   <data name="ScanButtonStop" xml:space="preserve">
-    <value>Stop Scanning</value>
+    <value>Arrêter le scan du QR Code</value>
   </data>
   <data name="SSIDLabel" xml:space="preserve">
-    <value>Network Name (SSID)</value>
+    <value>Nom du réseau (SSID)</value>
   </data>
 </root>
