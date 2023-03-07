@@ -151,6 +151,15 @@ namespace Wifi_QR_Code_Scanner_Legacy.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Flip Image.
+        /// </summary>
+        public static string FlipImageCheckbox {
+            get {
+                return ResourceManager.GetString("FlipImageCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Password.
         /// </summary>
         public static string PasswordLabel {

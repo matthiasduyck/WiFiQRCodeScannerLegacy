@@ -9,11 +9,12 @@
         Title="{x:Static p:Resources.ApplicationTitle}" Height="677.733" Width="960.324"
         WindowState="Maximized">
     <Grid Margin="0,0,2,-4">
-        <ComboBox HorizontalContentAlignment="Center" x:Name="comboBox1" HorizontalAlignment="Stretch" Margin="10,0,10,71" VerticalAlignment="Bottom" Height="40" FontSize="20"/>
+        <ComboBox HorizontalContentAlignment="Center" x:Name="comboBox1" Margin="10,0,194,71" VerticalAlignment="Bottom" Height="33" FontSize="20">
+        </ComboBox>
         <Grid Margin="10,10,10,117" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Black"/>
         <Image x:Name="pictureBox1" Margin="10,10,10,117" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-        <Button Click="Button1_Click_1" x:Name="button1" Content="{x:Static p:Resources.ScanButton}" HorizontalAlignment="Stretch" Height="40" Margin="10,0,10,25
-                " VerticalAlignment="Bottom" FontSize="20"/>
-        
+        <Button Click="Button1_Click_1" x:Name="button1" Content="{x:Static p:Resources.ScanButton}" HorizontalAlignment="Stretch" Height="40" Margin="10,0,10,25" VerticalAlignment="Bottom" FontSize="20"/>
+        <CheckBox x:Name="flipImageCheckbox" HorizontalAlignment="Right" Margin="0,0,10,78" VerticalAlignment="Bottom" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" IsChecked="False" VerticalContentAlignment="Center" Content="{x:Static p:Resources.FlipImageCheckbox}" FontSize="20"/>
+
     </Grid>
 </Window>

@@ -42,6 +42,7 @@ namespace Wifi_QR_Code_Scanner_Legacy
         ImageUtils.ImageUtils imageUtils;
         int frameCounter = 0;
         bool scanningLocked = false;
+        RotateFlipType imageMode = RotateFlipType.RotateNoneFlipNone;
         public MainWindow()
         {
             InitializeComponent();
@@ -101,7 +102,7 @@ namespace Wifi_QR_Code_Scanner_Legacy
                 {
                     frameCounter++;
                     cameraFrame = eventArgs.Frame;
-                    cameraFrame.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                    cameraFrame.RotateFlip(imageMode);
                     pictureBox1.Source = imageUtils.ToBitmapImage(cameraFrame);
 
                     //I'm expecting 30fps
@@ -202,6 +203,17 @@ namespace Wifi_QR_Code_Scanner_Legacy
                 return result;
             }
             return null;
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (flipImageCheckbox.IsChecked.Value)
+            {
+                imageMode = RotateFlipType.RotateNoneFlipX;
+            } else
+            {
+                imageMode = RotateFlipType.RotateNoneFlipNone;
+            }
         }
     }
 }

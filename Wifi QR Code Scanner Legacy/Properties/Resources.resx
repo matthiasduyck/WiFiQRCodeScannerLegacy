@@ -147,6 +147,9 @@
   <data name="ErrorTitleNoWifi" xml:space="preserve">
     <value>No wifi data found</value>
   </data>
+  <data name="FlipImageCheckbox" xml:space="preserve">
+    <value>Flip Image</value>
+  </data>
   <data name="PasswordLabel" xml:space="preserve">
     <value>Password</value>
   </data>
