@@ -97,6 +97,15 @@ namespace Wifi_QR_Code_Scanner_Legacy.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Rear camera.
+        /// </summary>
+        public static string Device_RearCam_8M {
+            get {
+                return ResourceManager.GetString("Device RearCam-8M", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Front camera.
         /// </summary>
         public static string Device_USB_FHD_Webcam {
@@ -120,6 +129,15 @@ namespace Wifi_QR_Code_Scanner_Legacy.Properties {
         public static string Device_USB2_0_Camera {
             get {
                 return ResourceManager.GetString("Device USB2.0 Camera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Front camera.
+        /// </summary>
+        public static string Device_USB2_0_FHD_webcam {
+            get {
+                return ResourceManager.GetString("Device USB2.0 FHD webcam", resourceCulture);
             }
         }
         
@@ -169,15 +187,6 @@ namespace Wifi_QR_Code_Scanner_Legacy.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Rear camera.
-        /// </summary>
-        public static string RearCam_8M {
-            get {
-                return ResourceManager.GetString("RearCam-8M", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Start Scanning.
         /// </summary>
         public static string ScanButton {
@@ -201,15 +210,6 @@ namespace Wifi_QR_Code_Scanner_Legacy.Properties {
         public static string SSIDLabel {
             get {
                 return ResourceManager.GetString("SSIDLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Front camera.
-        /// </summary>
-        public static string USB2_0_FHD_webcam {
-            get {
-                return ResourceManager.GetString("USB2.0 FHD webcam", resourceCulture);
             }
         }
     }

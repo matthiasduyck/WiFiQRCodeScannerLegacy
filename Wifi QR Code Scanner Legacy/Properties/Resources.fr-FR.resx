@@ -129,6 +129,9 @@
   <data name="Device Integrated Camera" xml:space="preserve">
     <value>Caméra intégrée</value>
   </data>
+  <data name="Device RearCam-8M" xml:space="preserve">
+    <value>Caméra arrière</value>
+  </data>
   <data name="Device USB FHD Webcam" xml:space="preserve">
     <value>Caméra frontale</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="Device USB2.0 Camera" xml:space="preserve">
     <value>Caméra arrière</value>
+  </data>
+  <data name="Device USB2.0 FHD webcam" xml:space="preserve">
+    <value>Caméra frontale</value>
   </data>
   <data name="Device World Facing Right" xml:space="preserve">
     <value>Caméra arrière</value>
@@ -153,9 +159,6 @@
   <data name="PasswordLabel" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
-  <data name="RearCam-8M" xml:space="preserve">
-    <value>Caméra arrière</value>
-  </data>
   <data name="ScanButton" xml:space="preserve">
     <value>Démarrer le scan du QR Code</value>
   </data>
@@ -164,8 +167,5 @@
   </data>
   <data name="SSIDLabel" xml:space="preserve">
     <value>Nom du réseau (SSID)</value>
-  </data>
-  <data name="USB2.0 FHD webcam" xml:space="preserve">
-    <value>Caméra frontale</value>
   </data>
 </root>
