@@ -153,6 +153,9 @@
   <data name="PasswordLabel" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="RearCam-8M" xml:space="preserve">
+    <value>Rear camera</value>
+  </data>
   <data name="ScanButton" xml:space="preserve">
     <value>Start Scanning</value>
   </data>
@@ -161,5 +164,8 @@
   </data>
   <data name="SSIDLabel" xml:space="preserve">
     <value>Network Name (SSID)</value>
+  </data>
+  <data name="USB2.0 FHD webcam" xml:space="preserve">
+    <value>Front camera</value>
   </data>
 </root>

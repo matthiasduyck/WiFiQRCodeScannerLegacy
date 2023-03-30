@@ -153,6 +153,9 @@
   <data name="PasswordLabel" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
+  <data name="RearCam-8M" xml:space="preserve">
+    <value>Caméra arrière</value>
+  </data>
   <data name="ScanButton" xml:space="preserve">
     <value>Démarrer le scan du QR Code</value>
   </data>
@@ -161,5 +164,8 @@
   </data>
   <data name="SSIDLabel" xml:space="preserve">
     <value>Nom du réseau (SSID)</value>
+  </data>
+  <data name="USB2.0 FHD webcam" xml:space="preserve">
+    <value>Caméra frontale</value>
   </data>
 </root>
