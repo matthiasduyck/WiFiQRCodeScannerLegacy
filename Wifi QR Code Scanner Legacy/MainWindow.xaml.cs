@@ -42,6 +42,7 @@ namespace Wifi_QR_Code_Scanner_Legacy
         ImageUtils.ImageUtils imageUtils;
         int frameCounter = 0;
         bool scanningLocked = false;
+        RotateFlipType imageMode = RotateFlipType.RotateNoneFlipNone;
         public MainWindow()
         {
             InitializeComponent();
@@ -51,7 +52,14 @@ namespace Wifi_QR_Code_Scanner_Legacy
             CaptureDevice = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo Device in CaptureDevice)
             {
-                comboBox1.Items.Add(Device.Name);
+                String translated = Properties.Resources.ResourceManager.GetString("Device " + Device.Name);
+                if (translated != null)
+                {
+                    comboBox1.Items.Add(translated);
+                } else
+                {
+                    comboBox1.Items.Add(Device.Name);
+                }
             }
             pictureBox1.Stretch = Stretch.Uniform;
             comboBox1.SelectedIndex = 0;
@@ -76,9 +84,12 @@ namespace Wifi_QR_Code_Scanner_Legacy
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             scanningLocked = true;
-            FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
-            FinalFrame.SignalToStop();
-            FinalFrame = null;
+            if (FinalFrame != null)
+            {
+                FinalFrame.NewFrame -= new NewFrameEventHandler(FinalFrame_NewFrame);
+                FinalFrame.SignalToStop();
+                FinalFrame = null;
+            }
             pictureBox1.Source = null;
             cameraFrame = null;
         }
@@ -91,7 +102,7 @@ namespace Wifi_QR_Code_Scanner_Legacy
                 {
                     frameCounter++;
                     cameraFrame = eventArgs.Frame;
-                    cameraFrame.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                    cameraFrame.RotateFlip(imageMode);
                     pictureBox1.Source = imageUtils.ToBitmapImage(cameraFrame);
 
                     //I'm expecting 30fps
@@ -112,7 +123,7 @@ namespace Wifi_QR_Code_Scanner_Legacy
                                     if (wifiAPdata != null)
                                     {
                                         DialogResult dr = System.Windows.Forms.MessageBox.Show(wifiAPdata.ToString(),
-                                        "Connect to this network?", MessageBoxButtons.YesNo);
+                                        Properties.Resources.ConnectTitle, MessageBoxButtons.YesNo);
                                         switch (dr)
                                         {
                                             case System.Windows.Forms.DialogResult.Yes:
@@ -124,8 +135,8 @@ namespace Wifi_QR_Code_Scanner_Legacy
                                     }
                                     else
                                     {
-                                        DialogResult dr = System.Windows.Forms.MessageBox.Show("No wifi data found, is this a WiFi QR code?",
-                                        "No wifi data found", MessageBoxButtons.OK);
+                                        DialogResult dr = System.Windows.Forms.MessageBox.Show(Properties.Resources.ErrorMessageNoWifi,
+                                        Properties.Resources.ErrorTitleNoWifi, MessageBoxButtons.OK);
                                         switch (dr)
                                         {
                                             case System.Windows.Forms.DialogResult.OK:
@@ -147,24 +158,35 @@ namespace Wifi_QR_Code_Scanner_Legacy
 
         private void Button1_Click_1(object sender, RoutedEventArgs e)
         {
-            FinalFrame = new VideoCaptureDevice(CaptureDevice[comboBox1.SelectedIndex].MonikerString);
-            List<VideoCapabilities> availableCapabilities = null;
-            try
+            if (comboBox1.IsEnabled)
             {
-                availableCapabilities = FinalFrame.VideoCapabilities.Where(capabilities => capabilities is VideoCapabilities).Select(capabilities => (VideoCapabilities)capabilities).ToList();
-                VideoCapabilities bestVideoResolution = this.findBestResolution(availableCapabilities);
-                if (bestVideoResolution != null)
+                comboBox1.IsEnabled = false;
+                scanningLocked = false;
+                button1.Content = Properties.Resources.ScanButtonStop;
+                FinalFrame = new VideoCaptureDevice(CaptureDevice[comboBox1.SelectedIndex].MonikerString);
+                List<VideoCapabilities> availableCapabilities = null;
+                try
                 {
-                    FinalFrame.VideoResolution = bestVideoResolution;
+                    availableCapabilities = FinalFrame.VideoCapabilities.Where(capabilities => capabilities is VideoCapabilities).Select(capabilities => (VideoCapabilities)capabilities).ToList();
+                    VideoCapabilities bestVideoResolution = this.findBestResolution(availableCapabilities);
+                    if (bestVideoResolution != null)
+                    {
+                        FinalFrame.VideoResolution = bestVideoResolution;
+                    }
                 }
-            }
-            catch (Exception ex)
+                catch (Exception ex)
+                {
+                    //MessageManager.ShowMessageToUserAsync("No resolutions could be detected, trying default mode.");
+                }
+
+                FinalFrame.NewFrame += new NewFrameEventHandler(FinalFrame_NewFrame);
+                FinalFrame.Start();
+            } else
             {
-                //MessageManager.ShowMessageToUserAsync("No resolutions could be detected, trying default mode.");
+                comboBox1.IsEnabled = true;
+                button1.Content = Properties.Resources.ScanButton;
+                Shutdown(null, null);
             }
-            
-            FinalFrame.NewFrame += new NewFrameEventHandler(FinalFrame_NewFrame);
-            FinalFrame.Start();
         }
 
         private VideoCapabilities findBestResolution(List<VideoCapabilities> videoEncodingProperties)
@@ -181,6 +203,17 @@ namespace Wifi_QR_Code_Scanner_Legacy
                 return result;
             }
             return null;
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (flipImageCheckbox.IsChecked.Value)
+            {
+                imageMode = RotateFlipType.RotateNoneFlipX;
+            } else
+            {
+                imageMode = RotateFlipType.RotateNoneFlipNone;
+            }
         }
     }
 }

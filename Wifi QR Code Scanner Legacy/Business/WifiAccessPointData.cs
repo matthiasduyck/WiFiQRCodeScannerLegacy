@@ -15,7 +15,9 @@ namespace Wifi_QR_Code_Scanner_Legacy.Business
 
         public override string ToString()
         {
-            return "Network Name (SSID): " + ssid + System.Environment.NewLine + "Password: " + password + System.Environment.NewLine + "Authentication: " + this.wifiAccessPointSecurity;
+            return Properties.Resources.SSIDLabel+": " + ssid + System.Environment.NewLine + 
+                Properties.Resources.PasswordLabel + ": " + password + System.Environment.NewLine +
+                Properties.Resources.AuthenticationLabel + ": " + this.wifiAccessPointSecurity;
         }
     }
     public enum WifiAccessPointSecurity
